@@ -1,0 +1,173 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API TP5",
+    "description": "Documentación de la API para el TP5.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Socios",
+      "description": "Operaciones relacionadas con los socios."
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/api/socio/": {
+      "get": {
+        "tags": [
+          "Socios"
+        ],
+        "summary": "Obtener todos los socios",
+        "description": "Retorna una lista de todos los socios.",
+        "responses": {
+          "200": {
+            "description": "Lista de socios obtenida con éxito."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Socios"
+        ],
+        "summary": "Agrega un socio",
+        "description": "Agrega un socio a la lista de socios",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del socio a agregar.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Socio"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Socio agregado correctamente.",
+            "schema": {
+              "$ref": "#/definitions/Socio"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Socios"
+        ],
+        "summary": "Actualizar un Socio",
+        "description": "Actualiza un socio de la lista de Socios.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Socio actualizado con éxito."
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/socio/{id}": {
+      "delete": {
+        "tags": [
+          "Socios"
+        ],
+        "summary": "Eliminar un Socio",
+        "description": "Elimina un socio de la lista de Socios.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Socio eliminado con éxito."
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/socio/activos": {
+      "get": {
+        "tags": [
+          "Socios"
+        ],
+        "summary": "Filtrar socios activos",
+        "description": "Retorna la lista de socios activos.",
+        "responses": {
+          "200": {
+            "description": "Lista de socios activos obtenida con exito."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Socio": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "example": "Guadalupe"
+        },
+        "apellido": {
+          "type": "string",
+          "example": "Veliz"
+        },
+        "foto": {
+          "type": "string",
+          "example": "url"
+        },
+        "dni": {
+          "type": "string",
+          "example": "12345678"
+        },
+        "numeroSocio": {
+          "type": "number",
+          "example": 1
+        },
+        "activo": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    }
+  }
+}
