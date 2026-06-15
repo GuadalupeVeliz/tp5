@@ -15,6 +15,10 @@
     {
       "name": "Transacciones",
       "description": "Operaciones relacionadas con las transacciones"
+    },
+    {
+      "name": "Empleados",
+      "description": "Operaciones relacionadas con los empleados"
     }
   ],
   "schemes": [
@@ -246,6 +250,83 @@
           }
         }
       }
+    },
+    "/api/empleados/": {
+      "get": {
+        "tags": [
+          "Empleados"
+        ],
+        "summary": "Obtener todos los empleados",
+        "description": "Retorna una lista de todos los empleados.",
+        "responses": {
+          "200": {
+            "description": "Lista de empleados obtenida con éxito."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Empleados"
+        ],
+        "summary": "Agrega un empleado",
+        "description": "Agrega un empleado a la lista de empleados",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del empleado a agregar.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empleado agregado correctamente.",
+            "schema": {
+              "$ref": "#/definitions/Empleado"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/empleados/{id}": {
+      "get": {
+        "tags": [
+          "Empleados"
+        ],
+        "summary": "Obtener empleado por su id",
+        "description": "Retorna un empleado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Empleado obtenido con éxito."
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -300,6 +381,27 @@
         "emailCliente": {
           "type": "string",
           "example": "alguien@mail.com"
+        }
+      }
+    },
+    "Empleado": {
+      "type": "object",
+      "properties": {
+        "apellido": {
+          "type": "string",
+          "example": "Veliz"
+        },
+        "nombre": {
+          "type": "string",
+          "example": "Guadalupe"
+        },
+        "dni": {
+          "type": "string",
+          "example": "12345678"
+        },
+        "email": {
+          "type": "string",
+          "example": "uno@mail.com"
         }
       }
     }

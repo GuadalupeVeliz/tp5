@@ -15,6 +15,10 @@ const doc = {
     {
       name:"Transacciones",
       description: "Operaciones relacionadas con las transacciones"
+    },
+    {
+      name:"Empleados",
+      description: "Operaciones relacionadas con los empleados"
     }
   ],
   definitions: {
@@ -32,6 +36,12 @@ const doc = {
       idiomaDestino: "EN",
       textoDestino: "Hello",
       emailCliente: "alguien@mail.com"
+    },
+    Empleado: {
+      apellido: "Veliz",
+      nombre: "Guadalupe",
+      dni: "12345678",
+      email: "uno@mail.com"
     }
   },
 };
