@@ -11,6 +11,10 @@
     {
       "name": "Socios",
       "description": "Operaciones relacionadas con los socios."
+    },
+    {
+      "name": "Transacciones",
+      "description": "Operaciones relacionadas con las transacciones"
     }
   ],
   "schemes": [
@@ -137,6 +141,111 @@
           }
         }
       }
+    },
+    "/api/transacciones/": {
+      "get": {
+        "tags": [
+          "Transacciones"
+        ],
+        "summary": "Obtener las transacciones",
+        "description": "Retorna la lista de transacciones.",
+        "responses": {
+          "200": {
+            "description": "Lista de transacciones obtenida con exito."
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Transacciones"
+        ],
+        "summary": "Agrega una Transaccion",
+        "description": "Agrega una transaccion a la lista de transacciones",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos de la transaccion a agregar.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Transaccion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaccion agregado correctamente.",
+            "schema": {
+              "$ref": "#/definitions/Transaccion"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/transacciones/{email}": {
+      "get": {
+        "tags": [
+          "Transacciones"
+        ],
+        "summary": "Filtrar transacciones por email",
+        "description": "Retorna la lista de transacciones segun el email ingresado",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de transacciones con email ingresado obtenida con exito."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/transacciones/{idiomaOrigen}/{idiomaDestino}": {
+      "get": {
+        "tags": [
+          "Transacciones"
+        ],
+        "summary": "Filtrar transacciones por lenguaje de origen y destino.",
+        "description": "Retorna la lista de transacciones segun el origen y destino.",
+        "parameters": [
+          {
+            "name": "idiomaOrigen",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "idiomaDestino",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de transacciones obtenida con exito."
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -166,6 +275,31 @@
         "activo": {
           "type": "boolean",
           "example": true
+        }
+      }
+    },
+    "Transaccion": {
+      "type": "object",
+      "properties": {
+        "idiomaOrigen": {
+          "type": "string",
+          "example": "ES"
+        },
+        "textoOrigen": {
+          "type": "string",
+          "example": "Hola"
+        },
+        "idiomaDestino": {
+          "type": "string",
+          "example": "EN"
+        },
+        "textoDestino": {
+          "type": "string",
+          "example": "Hello"
+        },
+        "emailCliente": {
+          "type": "string",
+          "example": "alguien@mail.com"
         }
       }
     }
