@@ -11,6 +11,10 @@ const doc = {
     {
       name: "Socios",
       description: "Operaciones relacionadas con los socios.",
+    },
+    {
+      name:"Transacciones",
+      description: "Operaciones relacionadas con las transacciones"
     }
   ],
   definitions: {
@@ -21,12 +25,18 @@ const doc = {
       dni: "12345678",
       numeroSocio: 1,
       activo: true,
+    },
+    Transaccion: {
+      idiomaOrigen: "ES",
+      textoOrigen: "Hola",
+      idiomaDestino: "EN",
+      textoDestino: "Hello",
+      emailCliente: "alguien@mail.com"
     }
   },
 };
 const outputFile = "./swagger_output.json";
-const endpointsFiles = ["./index.js"]; // verifica la ruta
+const endpointsFiles = ["./index.js"]; 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
   console.log(`Documentación generada en ${outputFile}`);
-  //require('./index.js'); // verifica la ruta donde inicia tu app
 });
