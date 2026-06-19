@@ -14,6 +14,7 @@ const swaggerFile=require('./swagger_output.json');
 app.use('/api/socio',require('./src/routes/socio.route'));
 app.use('/api/transacciones', require('./src/routes/transaccion.route'));
 app.use('/api/empleados', require('./src/routes/empleado.route'));
+app.use('/api/publicaciones', require('./src/routes/publicacion.route'));
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 
