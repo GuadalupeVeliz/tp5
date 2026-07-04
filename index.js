@@ -20,7 +20,7 @@ app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.set('port', process.env.PORT || 3000);
 
-sequelize.sync({force : false })
+sequelize.sync({alter : true })
 .then( () => {console.log('Tablas de PostgreSQL Sincronizadas')
     app.listen(app.get('port'), () => { console.log('Server started on port', app.get('port'))});
 })
