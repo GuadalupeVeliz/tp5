@@ -6,7 +6,8 @@ const sequelize = require('./config/database');
 var app = express();
 
 app.use(express.json());
-app.use(cors({origin: 'http://localhost:4200'}));
+app.use(cors({origin: 'https://tp5-front.onrender.com'}));
+
 
 const swaggerUi=require('swagger-ui-express');
 const swaggerFile=require('./swagger_output.json');
